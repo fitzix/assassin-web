@@ -29,6 +29,7 @@ export default {
   data() {
     return {
       searchKey: '',
+      activeIndex: 1,
     };
   },
   methods: {
