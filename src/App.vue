@@ -1,29 +1,21 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
+    <el-container>
+      <el-header class="asn-nav">
+        <el-menu default-active="1" mode="horizontal">
+          <li role="menuitem" class="el-menu-item asn-nav-logo">
+            <img src="https://cdn-ossd.zipjpg.com/reg/bd6bde94290bc6fc0a5687afa982b543_2_2_art.png" alt="" />
+          </li>
+
+          <el-menu-item index="1">处理中心</el-menu-item>
+          <el-menu-item index="2">处理中心</el-menu-item>
+          <el-menu-item index="3">处理中心</el-menu-item>
+          <el-menu-item index="4">消息中心</el-menu-item>
+        </el-menu>
+      </el-header>
+      <el-main>Main</el-main>
+      <el-footer>Footer</el-footer>
+    </el-container>
     <router-view />
   </div>
 </template>
-
-<style lang="scss">
-#app {
-  font-family: "Avenir", Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
-#nav {
-  padding: 30px;
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-    &.router-link-exact-active {
-      color: #42b983;
-    }
-  }
-}
-</style>
