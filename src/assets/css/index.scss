@@ -1,21 +1,70 @@
+.el-main {
+  max-width: 1140px;
+  margin: auto;
+}
+
+//===================================================================
+body {
+  margin: 0;
+  padding: 0;
+}
+
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
+  .el-header {
+    border-bottom: 1px solid #E2E2E2;
+  }
 }
 
 .asn-nav {
+  max-width: 1140px;
   margin: auto;
+  display: flex;
+  justify-content: space-between;
+  .asn-nav-bar {
+    display: flex;
+  }
 
-  .asn-nav-logo {
-    margin-right: 10rem;
+  .asn-nav-item {
+    cursor: pointer;
+    height: 60px;
+    line-height: 60px;
+    display: block;
+    text-decoration: none;
+    //font-size: 1.1rem;
+    font-weight: 700;
+    color: #909399;
+    padding: 0 20px;
+    white-space: nowrap;
+  }
+  .asn-nav-item:hover {
+    color: #303133;
+    border-bottom: 2px solid #409eff;
+  }
 
-    img {
-      height: 55px;
+  .asn-nav-search {
+    align-self: center;
+    input {
+      border-radius: 20px;
+    }
+    .el-input__icon {
+      cursor: pointer;
     }
   }
+
+  .asn-nav-logo {
+    img {
+      height: 54px;
+    }
+  }
+}
+
+.asn-app-list {
+  margin-top: 20px;
 }
 
 
