@@ -4,7 +4,7 @@
       <el-card :body-style="{ padding: '20px 10px' }">
         <img src="https://img.xclient.info/attachment/2019/07/3b220c11-f6eb-3312-cd32-39e96d76a830.png" class="asn-app-list_icon" alt />
         <div class="asn-app-list_status">
-          <i class="el-icon-s-data">&nbsp;{{ item.hot | numberFormatter }}</i>
+          <i class="el-icon-s-data">&nbsp;{{ item.hot | numberFormat }}</i>
           <i class="el-icon-time">&nbsp;{{ item['update_at'] | dateFormat }}</i>
         </div>
         <p>Lungo 1.6.0 防止屏幕休眠sdsdsdsdssdsad</p>
