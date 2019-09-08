@@ -10,8 +10,6 @@ body {
   font-family: "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
 
   .el-header {
     border-bottom: .3px #E2E2E2 solid;
@@ -50,14 +48,14 @@ body {
 .asn-app-list {
   padding-bottom: 5px;
 
-  .el-card__body > * {
-    margin-bottom: 10px;
-  }
-
   .asn-app-list_icon {
-    width: 100px;
-    height: 100px;
-    border-radius: 18px;
+    text-align: center;
+    img {
+      width: 100px;
+      height: 100px;
+      border-radius: 18px;
+      margin-bottom: 10px;
+    }
   }
 
   .asn-app-list_status {
@@ -67,21 +65,31 @@ body {
     color: #909399;
   }
 
-  p {
+  .asn-app-name {
     height: 40px;
     line-height: 20px;
-    text-overflow: ellipsis;
-    overflow: hidden;
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
     -webkit-line-clamp: 2;
+  }
+  .asn-app-desc {
+    height: 44px;
+    line-height: 20px;
+    margin-top: 5px;
+    font-size: 12px;
+    color: #777;
+    -webkit-line-clamp: 2;
+  }
 
-    &:last-child {
-      height: 44px;
-      margin-top: 5px;
-      font-size: 12px;
-      color: #777;
-    }
+  .asn-category {
+    height: 18px;
+    //text-align: left;
+    display: inline-block;
+    line-height: 18px;
+    padding: 0 4px;
+    font-size: 12px;
+    color: #FFFFFF;
+    background: #409EFF;
+    border-radius: 3px;
+    text-decoration: none;
   }
 
   @keyframes circle {
@@ -94,12 +102,11 @@ body {
   }
 
   :hover {
-    .asn-app-list_icon {
-      //transform: rotate(15deg);
+    .asn-app-list_icon > img {
       animation: circle 3s infinite linear;
     }
 
-    :not(.asn-app-list_icon) {
+    :not(img) {
       transform: none;
       color: #FFFFFF;
     }
@@ -135,6 +142,7 @@ body {
       a {
         text-decoration: none;
         font-size: 12px;
+        color: #409EFF;
       }
       img {
         width: 70px;
@@ -148,6 +156,7 @@ body {
           margin: 0;
           height: 22px;
           line-height: 22px;
+          color: #409EFF;
         }
         p {
           margin: 0;
