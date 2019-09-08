@@ -3,8 +3,9 @@ import Router from 'vue-router';
 
 Vue.use(Router);
 
-const Layout = () => import('@/views/layout');
-const AppList = () => import('@/components/AppList');
+const Layout = () => import('src/views/layout');
+
+import HomeRoute from './home';
 
 export default new Router({
   mode: 'history',
@@ -13,9 +14,9 @@ export default new Router({
     {
       path: '/',
       component: Layout,
-      name: 'asn-layout',
+      name: 'asn-home',
       redirect: '/',
-      children: [{ path: '/', component: AppList }],
+      children: HomeRoute,
     },
   ],
 });

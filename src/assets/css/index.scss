@@ -13,7 +13,7 @@ body {
   color: #2c3e50;
 
   .el-header {
-    border-bottom: .5px solid #E2E2E2;
+    border-bottom: .3px #E2E2E2 solid;
   }
 
   .el-main {
@@ -28,15 +28,18 @@ body {
   margin: auto;
   display: flex;
   justify-content: space-between;
+
   .asn-nav-logo {
     img {
       height: 54px;
     }
   }
+
   .asn-nav-search {
     input {
       border-radius: 20px;
     }
+
     .el-input__icon {
       cursor: pointer;
     }
@@ -44,7 +47,7 @@ body {
 }
 
 .asn-app-list {
-  margin-top: 5px;
+  padding-bottom: 5px;
 
   .el-card__body > * {
     margin-bottom: 10px;
@@ -63,14 +66,36 @@ body {
     color: #909399;
   }
 
-  p:last-child {
-    font-size: 12px;
-    color: #777;
+  p {
+    height: 40px;
+    line-height: 20px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+
+    &:last-child {
+      height: 44px;
+      margin-top: 5px;
+      font-size: 12px;
+      color: #777;
+    }
+  }
+
+  @keyframes circle {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
   }
 
   :hover {
     .asn-app-list_icon {
-      transform: rotate(15deg);
+      //transform: rotate(15deg);
+      animation: circle 3s infinite linear;
     }
 
     :not(.asn-app-list_icon) {
