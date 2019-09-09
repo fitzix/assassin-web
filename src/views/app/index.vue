@@ -18,9 +18,9 @@
       </div>
     </div>
     <div class="content asn-col-lg">
-      <el-row :gutter="35">
+      <el-row :gutter="30">
         <el-col :xs="24" :sm="16" class="carousel">
-          <el-carousel trigger="click" height="430px">
+          <el-carousel trigger="click" height="390px">
             <el-carousel-item>
               <img src="https://img.xclient.info/cdn/mw1024/006ehIt6ly1fuba6gub6dj30o00h7q3w" alt="" />
             </el-carousel-item>
@@ -38,6 +38,21 @@
             <p class="hot-number">3243</p>
             <a class="download" href="">下载</a>
             <a class="donate" href="">赞助</a>
+            <p class="info-title">基本信息</p>
+            <div class="info">
+              <p>
+                <span>最新版本</span>
+                <span>1.3.6</span>
+              </p>
+              <p>
+                <span>类别</span>
+                <span>去问问</span>
+              </p>
+              <p>
+                <span>更新时间</span>
+                <span>2019-09-09</span>
+              </p>
+            </div>
           </div>
         </el-col>
       </el-row>
