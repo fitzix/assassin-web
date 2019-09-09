@@ -19,7 +19,7 @@
     </div>
     <div class="content asn-col-lg">
       <el-row :gutter="35">
-        <el-col :span="16" class="carousel">
+        <el-col :xs="24" :sm="16" class="carousel">
           <el-carousel trigger="click" height="430px">
             <el-carousel-item>
               <img src="https://img.xclient.info/cdn/mw1024/006ehIt6ly1fuba6gub6dj30o00h7q3w" alt="" />
@@ -32,11 +32,13 @@
             </el-carousel-item>
           </el-carousel>
         </el-col>
-        <el-col :span="8" class="status">
-          <p class="hot-name">热度</p>
-          <p class="hot-number">3243</p>
-          <a class="download" href="">下载</a>
-          <a class="donate" href="">赞助</a>
+        <el-col :xs="24" :sm="8">
+          <div class="status">
+            <p class="hot-name">热度</p>
+            <p class="hot-number">3243</p>
+            <a class="download" href="">下载</a>
+            <a class="donate" href="">赞助</a>
+          </div>
         </el-col>
       </el-row>
     </div>
