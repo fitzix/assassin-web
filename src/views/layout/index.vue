@@ -1,7 +1,7 @@
 <template>
   <el-container>
     <el-header height="61px">
-      <div class="asn-nav">
+      <div class="asn-col-lg asn-nav">
         <a href="" class="asn-nav-logo">
           <img src="https://cdn-ossd.zipjpg.com/reg/bd6bde94290bc6fc0a5687afa982b543_2_2_art.png" alt="" />
         </a>

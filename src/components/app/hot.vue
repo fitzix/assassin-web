@@ -6,7 +6,7 @@
         <a href="" class="item">
           <div class="item-icon">
             <img src="https://img.xclient.info/attachment/2019/07/3b220c11-f6eb-3312-cd32-39e96d76a830.png" alt="" />
-            <a href="">图形设计</a>
+            <a href="http://baidu.com">图形设计</a>
           </div>
           <div class="item-info">
             <div class="item-info-desc">

@@ -1,11 +1,5 @@
 @import "common";
 
-//===================================================================
-body {
-  margin: 0;
-  padding: 0;
-}
-
 #app {
   font-family: "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -16,14 +10,12 @@ body {
   }
 
   .el-main {
-    max-width: 1140px;
-    margin: auto;
-    padding: 10px 20px;
+    padding: 0;
   }
 }
 
+//==============导航栏==========
 .asn-nav {
-  max-width: 1140px;
   margin: auto;
   display: flex;
   justify-content: space-between;
@@ -45,112 +37,130 @@ body {
   }
 }
 
-.asn-app-list {
-  padding-bottom: 5px;
+//==============首页==========
+.asn-home {
+  margin: 10px auto;
 
-  .asn-app-list_icon {
-    text-align: center;
-    img {
-      width: 100px;
-      height: 100px;
-      border-radius: 18px;
-      margin-bottom: 10px;
-    }
-  }
+  .asn-app-list {
+    padding-bottom: 5px;
 
-  .asn-app-list_status {
-    display: flex;
-    justify-content: space-between;
-    font-size: 12px;
-    color: #909399;
-  }
+    .asn-app-list_icon {
+      text-align: center;
 
-  .asn-app-name {
-    height: 40px;
-    line-height: 20px;
-    -webkit-line-clamp: 2;
-  }
-  .asn-app-desc {
-    height: 44px;
-    line-height: 20px;
-    margin-top: 5px;
-    font-size: 12px;
-    color: #777;
-    -webkit-line-clamp: 2;
-  }
-
-  .asn-category {
-    height: 18px;
-    //text-align: left;
-    display: inline-block;
-    line-height: 18px;
-    padding: 0 4px;
-    font-size: 12px;
-    color: #FFFFFF;
-    background: #409EFF;
-    border-radius: 3px;
-    text-decoration: none;
-  }
-
-  @keyframes circle {
-    0% {
-      transform: rotate(0deg);
-    }
-    100% {
-      transform: rotate(360deg);
-    }
-  }
-
-  :hover {
-    .asn-app-list_icon > img {
-      animation: circle 3s infinite linear;
+      img {
+        width: 100px;
+        height: 100px;
+        border-radius: 18px;
+        margin-bottom: 10px;
+      }
     }
 
-    :not(img) {
-      transform: none;
+    .asn-app-list_status {
+      display: flex;
+      justify-content: space-between;
+      font-size: 12px;
+      color: #909399;
+    }
+
+    .asn-app-name {
+      height: 40px;
+      line-height: 20px;
+      -webkit-line-clamp: 2;
+    }
+
+    .asn-app-desc {
+      height: 44px;
+      line-height: 20px;
+      margin-top: 5px;
+      font-size: 12px;
+      color: #777;
+      -webkit-line-clamp: 2;
+    }
+
+    .asn-category {
+      height: 18px;
+      //text-align: left;
+      display: inline-block;
+      line-height: 18px;
+      padding: 0 4px;
+      font-size: 12px;
       color: #FFFFFF;
+      background: #409EFF;
+      border-radius: 3px;
+      text-decoration: none;
     }
 
-    transform: translateY(-3px);
-    background: #363F48;
+    @keyframes circle {
+      0% {
+        transform: rotate(0deg);
+      }
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+
+    :hover {
+      .asn-app-list_icon > img {
+        animation: circle 3s infinite linear;
+      }
+
+      :not(img) {
+        transform: none;
+        color: #FFFFFF;
+      }
+
+      transform: translateY(-3px);
+      background: #363F48;
+    }
   }
+
 }
 
+//===========热门推荐==========
 .asn-app-hot {
   font-size: 14px;
   text-align: center;
   padding: 0 15px;
+
   & > h3 {
     margin: 0 auto;
     border-top: 2px solid #409EFF;
     border-bottom: 1px dashed #e6e8eb;
     padding: .6rem;
   }
+
   ul {
+    margin: 0;
     list-style: none;
     padding: 0;
   }
+
   .item {
     display: flex;
     justify-content: center;
     text-decoration: none;
     align-items: center;
     margin-top: 10px;
+
     .item-icon {
       display: flex;
       flex-flow: column;
+
       a {
         text-decoration: none;
         font-size: 12px;
         color: #409EFF;
       }
+
       img {
         width: 70px;
         height: 70px;
       }
     }
+
     .item-info {
       margin-left: 5px;
+
       .item-info-desc {
         h3 {
           margin: 0;
@@ -158,6 +168,7 @@ body {
           line-height: 22px;
           color: #409EFF;
         }
+
         p {
           margin: 0;
           height: 44px;
@@ -167,6 +178,7 @@ body {
           color: #777;
         }
       }
+
       .item-info-status {
         display: flex;
         justify-content: space-between;
