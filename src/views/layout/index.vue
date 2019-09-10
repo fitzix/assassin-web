@@ -3,7 +3,7 @@
     <el-header height="61px">
       <div class="asn-col-lg asn-nav">
         <a href="" class="asn-nav-logo">
-          <img src="https://cdn-ossd.zipjpg.com/reg/bd6bde94290bc6fc0a5687afa982b543_2_2_art.png" alt="" />
+          <img src="~src/assets/img/logo.png" alt="" />
         </a>
         <el-menu :default-active="activeIndex" mode="horizontal">
           <el-menu-item index="1">首页</el-menu-item>

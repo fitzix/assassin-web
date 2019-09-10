@@ -40,28 +40,42 @@
             <a class="donate" href="">赞助</a>
             <p class="info-title">基本信息</p>
             <div class="info">
-              <p>
-                <span>最新版本</span>
-                <span>1.3.6</span>
-              </p>
-              <p>
-                <span>类别</span>
-                <span>去问问</span>
-              </p>
-              <p>
-                <span>更新时间</span>
-                <span>2019-09-09</span>
-              </p>
+              <p><span>最新版本</span><span>1.3.6</span></p>
+              <p><span>类别</span><span>去问问</span></p>
+              <p><span>更新时间</span><span>2019-09-09</span></p>
             </div>
           </div>
         </el-col>
+      </el-row>
+      <el-row :gutter="30" class="content-desc">
+        <el-col :xs="24" :sm="16">
+          <div v-html="render" class="markdown-section"></div>
+        </el-col>
+        <el-col :xs="24" :sm="8"></el-col>
       </el-row>
     </div>
   </div>
 </template>
 
 <script>
+import axios from 'src/utils/common/http';
+import { render } from 'src/utils/common/markdown';
 export default {
   name: 'AsnAppInfo',
+  data() {
+    return {
+      mdContent: '',
+    };
+  },
+  computed: {
+    render() {
+      return render(this.mdContent);
+    },
+  },
+  created() {
+    axios.get('https://raw.githubusercontent.com/fitzix/fitzix.github.io/pages/source/_posts/2018-08-16-channel%E5%BA%95%E5%B1%82%E5%8E%9F%E7%90%86.md').then(resp => {
+      this.mdContent = resp;
+    });
+  },
 };
 </script>

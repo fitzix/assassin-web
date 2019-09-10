@@ -1,9 +1,11 @@
 @import "common";
+@import "markdown.css";
 
 #app {
   font-family: "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  font-size: 15px;
 
   .el-header {
     border-bottom: .3px #E2E2E2 solid;
@@ -193,13 +195,13 @@
 }
 
 .asn-app-info {
-  height: 2000px;
   background: #F8F8F8;
 
   .head {
     position: relative;
     height: 420px;
     background: url('https://img.xclient.info/img/cat_img/media.jpg') no-repeat fixed;
+
     &:before {
       position: absolute;
       top: 0;
@@ -214,6 +216,7 @@
     .info {
       position: relative;
       text-align: center;
+
       img {
         height: 128px;
         width: 128px;
@@ -235,8 +238,10 @@
         color: #FFFFFF;
         font-size: 12px;
         margin-top: 20px;
+
         li {
           margin-left: 10px;
+
           a {
             color: #FFFFFF;
             margin-left: 10px;
@@ -245,23 +250,25 @@
       }
     }
   }
+
   .content {
     margin: 0 auto;
     padding: 20px 10px;
     overflow: hidden;
-    height: 1000px;
-    text-align: center;
 
     .carousel {
       overflow: hidden;
+
       .el-carousel {
         background: #FFFFFF;
         padding: 20px;
+
         .el-carousel__item {
           img {
             height: 100%;
           }
         }
+
         .el-carousel__button {
           background: #409EFF;
         }
@@ -273,16 +280,20 @@
       overflow: hidden;
       padding: 20px 15px;
       height: 390px;
+      text-align: center;
+
       .hot-name {
         font-size: 12px;
         color: #777;
         margin-top: 20px;
       }
+
       .hot-number {
         font-weight: 600;
         font-size: 30px;
         margin-bottom: 30px;
       }
+
       .download, .donate {
         text-decoration: none;
         display: block;
@@ -293,18 +304,23 @@
         font-weight: 600;
         margin-top: 15px;
       }
+
       .download {
         background: #409EFF;
       }
+
       .donate {
         background: #FD7E81;
       }
+
       .info-title {
         font-weight: 700;
         margin-top: 30px;
       }
+
       .info {
         margin-top: 20px;
+
         p {
           font-size: .85rem;
           line-height: 26px;
@@ -314,6 +330,9 @@
           color: #777;
         }
       }
+    }
+    .content-desc {
+      margin-top: 30px;
     }
   }
 }
