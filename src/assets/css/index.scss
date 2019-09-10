@@ -143,7 +143,6 @@
     display: flex;
     justify-content: center;
     text-decoration: none;
-    align-items: center;
     margin-top: 20px;
 
     .item-icon {
@@ -170,7 +169,7 @@
         h3 {
           height: 22px;
           line-height: 22px;
-          color: #409EFF;
+          color: #333;
           font-weight: normal;
           font-size: 14px;
         }
@@ -270,7 +269,7 @@
         }
 
         .el-carousel__button {
-          background: #409EFF;
+          background: #4EAADE;
         }
       }
     }
@@ -298,7 +297,7 @@
         text-decoration: none;
         display: block;
         padding: 12px 6px;
-        background: #409EFF;
+        background: #4EAADE;
         color: #FFFFFF;
         border-radius: 4px;
         font-weight: 600;
@@ -306,7 +305,7 @@
       }
 
       .download {
-        background: #409EFF;
+        background: #4EAADE;
       }
 
       .donate {
@@ -333,6 +332,57 @@
     }
     .content-desc {
       margin-top: 30px;
+      .hot {
+        background: #FFFFFF;
+        padding: 40px 20px;
+      }
+    }
+    .content-version {
+      margin-top: 30px;
+      background: #FFFFFF;
+      text-align: center;
+      padding: 20px 35px;
+      p {
+        padding: 10px;
+        font-size: 1.2em;
+        font-weight: 500;
+      }
+      table {
+        width: 100%;
+        background: #333;
+        border-collapse: collapse;
+        border-radius: 3px;
+
+        thead {
+          color: #777;
+
+
+
+        }
+        tbody {
+          color: #FFFFFF;
+        }
+        th, td {
+          padding: 5px 10px;
+          border-bottom: 1px solid rgba(255,255,255, .1);
+          text-align: left;
+        }
+        .down-cell {
+          text-align: right;
+        }
+        .download {
+          display: inline-block;
+          width: 100px;
+          height: 30px;
+          background: #4eaade;
+          color: #fff;
+          text-align: center;
+          text-decoration: none;
+          line-height: 30px;
+          margin-left: 5px;
+          font-size: 14px;
+        }
+      }
     }
   }
 }
