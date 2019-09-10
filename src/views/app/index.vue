@@ -140,7 +140,7 @@ export default {
     AsnHotApp,
   },
   created() {
-    axios.get('https://raw.githubusercontent.com/segmentio/kafka-go/master/README.md').then(resp => {
+    axios.get('https://raw.githubusercontent.com/wasmerio/wasmer/master/README.md').then(resp => {
       this.mdContent = resp;
     });
   },

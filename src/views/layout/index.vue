@@ -20,7 +20,25 @@
     <el-main>
       <router-view />
     </el-main>
-    <el-footer>Footer</el-footer>
+    <footer class="footer">
+      <el-row>
+        <el-col class="notice">
+          <a class="logo" href="">
+            <img src="~src/assets/img/logo2.png" alt="" />
+          </a>
+          <p class="info">
+            本站并不以盈利为目的，所有软件均来源于网络，仅用于分享学习，并为大家带来更好的下载体验。如本站的内容对您的权利造成了影响，请发邮件至asins.xyz@gmail.com,我们会在第一时间将涉及版权的内容进行删除。
+          </p>
+          <p class="copyright">
+            <span>Copyright © 2019 </span>
+            <a href="">Assassin</a>
+            <span>. All rights reserved.</span>
+          </p>
+        </el-col>
+        <!--        <el-col :sm="6" :xs="24"></el-col>-->
+        <!--        <el-col :sm="6" :xs="24"></el-col>-->
+      </el-row>
+    </footer>
   </el-container>
 </template>
 
