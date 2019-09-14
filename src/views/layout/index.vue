@@ -9,6 +9,8 @@
           <el-menu-item index="1">首页</el-menu-item>
           <el-menu-item index="2">应用</el-menu-item>
           <el-menu-item index="3">书籍</el-menu-item>
+          <el-menu-item index="4">文章</el-menu-item>
+          <el-menu-item index="5">社区</el-menu-item>
           <el-menu-item>
             <el-input v-model="searchKey" placeholder="请输入内容" size="medium" class="asn-nav-search">
               <i class="el-icon-search el-input__icon" slot="suffix" @click="x"></i>

@@ -3,7 +3,7 @@ const asnAppInfo = () => import('src/views/app/index');
 export default [
   {
     name: 'asn-app-info',
-    path: '/',
+    path: '',
     component: asnAppInfo,
   },
 ];

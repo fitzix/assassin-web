@@ -15,50 +15,35 @@
 <script>
 import AsnAppList from 'src/components/AppList';
 import AsnHotApp from 'src/components/app/hot';
+import { GetAppList } from 'src/api/app';
+
 export default {
   name: 'index',
   data() {
     return {
-      data: [{ id: 10, hot: 1212121, update_at: '2017-12-08T00:00:00.00Z' }, { id: 11, hot: 1212121 }, { id: 12, hot: 1212 }, { id: 13, hot: 12122 }, { id: 14, hot: 12 }, { id: 15, hot: 1212 }],
-      hotData: [
-        {
-          id: 10,
-          name: 'Sketch 57.1 轻量易用的矢量设计工具',
-          hot: 1212121,
-          update_at: '2017-12-08T00:00:00.00Z',
-          description: 'Lungo是一款防止Mac屏幕进入休眠状态的软件，可以满足我们让mac电脑不进入休眠状态的需求。Lungo是一款防止Mac屏幕进入休眠状态的软件，可以满足我们让mac电脑不进入休眠状态的需求',
-        },
-        {
-          id: 11,
-          hot: 1212121,
-          description: 'Lungo是一款防止Mac屏幕进入休眠状态的软件，可以满足我们让mac电脑不进入休眠状态的需求。Lungo是一款防止Mac屏幕进入休眠状态的软件，可以满足我们让mac电脑不进入休眠状态的需求',
-        },
-        {
-          id: 12,
-          hot: 1212,
-          description: 'Lungo是一款防止Mac屏幕进入休眠状态的软件，可以满足我们让mac电脑不进入休眠状态的需求。Lungo是一款防止Mac屏幕进入休眠状态的软件，可以满足我们让mac电脑不进入休眠状态的需求',
-        },
-        {
-          id: 13,
-          hot: 12122,
-          description: 'Lungo是一款防止Mac屏幕进入休眠状态的软件，可以满足我们让mac电脑不进入休眠状态的需求。Lungo是一款防止Mac屏幕进入休眠状态的软件，可以满足我们让mac电脑不进入休眠状态的需求',
-        },
-        {
-          id: 14,
-          hot: 12,
-          description: 'Lungo是一款防止Mac屏幕进入休眠状态的软件，可以满足我们让mac电脑不进入休眠状态的需求。Lungo是一款防止Mac屏幕进入休眠状态的软件，可以满足我们让mac电脑不进入休眠状态的需求',
-        },
-        {
-          id: 15,
-          hot: 1212,
-          description: 'Lungo是一款防止Mac屏幕进入休眠状态的软件，可以满足我们让mac电脑不进入休眠状态的需求。Lungo是一款防止Mac屏幕进入休眠状态的软件，可以满足我们让mac电脑不进入休眠状态的需求',
-        },
-      ],
+      data: [],
+      hotData: [],
     };
+  },
+  methods: {
+    getList() {
+      GetAppList().then(resp => {
+        this.data = resp.info;
+      });
+    },
+    getHotData() {
+      GetAppList({ type: 1 }).then(resp => {
+        this.hotData = resp.info;
+      });
+    },
   },
   components: {
     AsnAppList,
     AsnHotApp,
+  },
+  created() {
+    this.getList();
+    this.getHotData();
   },
 };
 </script>

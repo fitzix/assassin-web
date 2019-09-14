@@ -3,9 +3,9 @@
     <h3>热门应用</h3>
     <ul>
       <li v-for="item in data" :key="item.id">
-        <a href="" class="item">
+        <a :href="`/apps/${item.id}`" class="item">
           <div class="item-icon">
-            <img src="https://img.xclient.info/attachment/2019/07/3b220c11-f6eb-3312-cd32-39e96d76a830.png" alt="" />
+            <img :src="item.icon" alt="" />
             <a href="http://baidu.com">图形设计</a>
           </div>
           <div class="item-info">

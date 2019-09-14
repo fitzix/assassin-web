@@ -3,7 +3,7 @@
     <div class="head">
       <div class="info">
         <img src="https://img.xclient.info/attachment/2017/02/7243e6ac-936d-c1f9-4d75-bbeed0c37672.png" alt="" />
-        <h1>232332</h1>
+        <h1>{{ data.name }}</h1>
         <ul>
           <li>2019-09-09 11:04:02</li>
           <li>
@@ -87,49 +87,26 @@
 
 <script>
 import AsnHotApp from 'src/components/app/hot';
-import axios from 'src/utils/common/http';
 import { render } from 'src/utils/common/markdown';
+import { GetApp } from 'src/api/app';
 
 export default {
   name: 'AsnAppInfo',
   data() {
     return {
+      data: {
+        id: '',
+      },
       mdContent: '',
-      hotData: [
-        {
-          id: 10,
-          name: 'Sketch 57.1 轻量易用的矢量设计工具',
-          hot: 1212121,
-          update_at: '2017-12-08T00:00:00.00Z',
-          description: 'Lungo是一款防止Mac屏幕进入休眠状态的软件，可以满足我们让mac电脑不进入休眠状态的需求。Lungo是一款防止Mac屏幕进入休眠状态的软件，可以满足我们让mac电脑不进入休眠状态的需求',
-        },
-        {
-          id: 11,
-          hot: 1212121,
-          description: 'Lungo是一款防止Mac屏幕进入休眠状态的软件，可以满足我们让mac电脑不进入休眠状态的需求。Lungo是一款防止Mac屏幕进入休眠状态的软件，可以满足我们让mac电脑不进入休眠状态的需求',
-        },
-        {
-          id: 12,
-          hot: 1212,
-          description: 'Lungo是一款防止Mac屏幕进入休眠状态的软件，可以满足我们让mac电脑不进入休眠状态的需求。Lungo是一款防止Mac屏幕进入休眠状态的软件，可以满足我们让mac电脑不进入休眠状态的需求',
-        },
-        {
-          id: 13,
-          hot: 12122,
-          description: 'Lungo是一款防止Mac屏幕进入休眠状态的软件，可以满足我们让mac电脑不进入休眠状态的需求。Lungo是一款防止Mac屏幕进入休眠状态的软件，可以满足我们让mac电脑不进入休眠状态的需求',
-        },
-        {
-          id: 14,
-          hot: 12,
-          description: 'Lungo是一款防止Mac屏幕进入休眠状态的软件，可以满足我们让mac电脑不进入休眠状态的需求。Lungo是一款防止Mac屏幕进入休眠状态的软件，可以满足我们让mac电脑不进入休眠状态的需求',
-        },
-        {
-          id: 15,
-          hot: 1212,
-          description: 'Lungo是一款防止Mac屏幕进入休眠状态的软件，可以满足我们让mac电脑不进入休眠状态的需求。Lungo是一款防止Mac屏幕进入休眠状态的软件，可以满足我们让mac电脑不进入休眠状态的需求',
-        },
-      ],
+      hotData: [],
     };
+  },
+  methods: {
+    getData() {
+      GetApp(this.data.id).then(resp => {
+        this.data = resp;
+      });
+    },
   },
   computed: {
     render() {
@@ -140,9 +117,11 @@ export default {
     AsnHotApp,
   },
   created() {
-    axios.get('https://raw.githubusercontent.com/wasmerio/wasmer/master/README.md').then(resp => {
-      this.mdContent = resp;
-    });
+    this.data.id = this.$route.params.id;
+    this.getData();
+    // axios.get('https://raw.githubusercontent.com/wasmerio/wasmer/master/README.md').then(resp => {
+    //   this.mdContent = resp;
+    // });
   },
 };
 </script>

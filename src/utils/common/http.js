@@ -4,7 +4,8 @@ import store from 'src/store';
 
 // create an axios instance
 const service = axios.create({
-  baseURL: process.env.VUE_APP_BASE_API, // url = base url + request url
+  // baseURL: process.env.VUE_APP_BASE_API,
+  baseURL: 'http://localhost:8081/api/v1',
   // withCredentials: true, // send cookies when cross-domain requests
   timeout: 5000, // request timeout
 });
@@ -42,7 +43,7 @@ service.interceptors.response.use(
    * You can also judge the status by HTTP Status Code
    */
   response => {
-    return response.data;
+    return response.data.data;
     // const res = response.data;
     //
     // // if the custom code is not 20000, it is judged as an error.
@@ -82,4 +83,21 @@ service.interceptors.response.use(
   }
 );
 
-export default service;
+const http = {
+  get(url, data) {
+    return service.get(url, {
+      params: data,
+    });
+  },
+  post(url, data) {
+    return service.post(url, data);
+  },
+  put(url, data) {
+    return service.put(url, data);
+  },
+  delete(url, data) {
+    return service.delete(url, data);
+  },
+};
+
+export default http;
