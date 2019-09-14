@@ -46,7 +46,12 @@
 
   .asn-app-list {
     padding-bottom: 5px;
-    cursor: pointer;
+    // cursor: pointer;
+    a {
+      text-decoration: none;
+      display: block;
+      color: #333;
+    }
 
     .asn-app-list_icon {
       text-align: center;
@@ -266,6 +271,7 @@
         .el-carousel__item {
           img {
             height: 100%;
+            width: 100%;
           }
         }
 

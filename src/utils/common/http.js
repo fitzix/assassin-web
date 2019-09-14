@@ -1,6 +1,8 @@
 import axios from 'axios';
-import { Message } from 'element-ui';
 import store from 'src/store';
+import { Message } from 'element-ui';
+import { cdnPrefix } from './index';
+import { CDN_REPOSITORY } from 'src/const';
 
 // create an axios instance
 const service = axios.create({
@@ -43,6 +45,10 @@ service.interceptors.response.use(
    * You can also judge the status by HTTP Status Code
    */
   response => {
+    if (response.config.baseURL.includes(CDN_REPOSITORY.GithubServer)) {
+      return response.data;
+    }
+
     return response.data.data;
     // const res = response.data;
     //
@@ -97,6 +103,11 @@ const http = {
   },
   delete(url, data) {
     return service.delete(url, data);
+  },
+  getMarkdown(url, type) {
+    return service.get(`${url}.md`, {
+      baseURL: cdnPrefix('', type),
+    });
   },
 };
 
