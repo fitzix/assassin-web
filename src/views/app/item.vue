@@ -82,6 +82,7 @@
         </table>
       </div>
     </div>
+    <div id="gitalk-container"></div>
   </div>
 </template>
 
@@ -91,6 +92,7 @@ import { render } from 'src/utils/common/markdown';
 import { GetApp } from 'src/api/app';
 import { GetMarkdown } from 'src/api';
 import { GetAppList } from 'src/api/app';
+import { gitalkRender } from 'src/utils/common/gittalk';
 
 export default {
   name: 'AsnAppInfo',
@@ -147,6 +149,9 @@ export default {
     this.app.id = this.$route.params.id;
     this.getData();
     this.getAppDesc();
+    this.$nextTick(() => {
+      gitalkRender(this.app.id);
+    });
   },
 };
 </script>
