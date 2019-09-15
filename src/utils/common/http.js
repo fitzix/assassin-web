@@ -7,7 +7,7 @@ import { CDN_REPOSITORY } from 'src/const';
 // create an axios instance
 const service = axios.create({
   // baseURL: process.env.VUE_APP_BASE_API,
-  baseURL: 'http://localhost:8081/api/v1',
+  baseURL: 'http://localhost:8080/api/v1',
   // withCredentials: true, // send cookies when cross-domain requests
   timeout: 5000, // request timeout
 });

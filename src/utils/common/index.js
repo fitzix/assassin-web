@@ -1,4 +1,5 @@
 import { CDN_REPOSITORY } from 'src/const';
+import { ASN_APP_TYPE } from 'src/const/index';
 
 export function cdnPrefix(url, type) {
   switch (type) {
@@ -19,4 +20,24 @@ export function cdnPrefix(url, type) {
 
 export function imgPrefix(url) {
   return cdnPrefix(url, 'img');
+}
+
+export function parseListToObject(dataList) {
+  let resp = {};
+  for (let e of dataList) {
+    resp[e.id] = e.name;
+  }
+  return resp;
+}
+
+export function asnTranslate(id, list) {
+  if (list && list.hasOwnProperty(id)) {
+    return list[id];
+  }
+
+  if (ASN_APP_TYPE.hasOwnProperty(id)) {
+    return ASN_APP_TYPE[id];
+  }
+
+  return '';
 }

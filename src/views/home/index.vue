@@ -1,5 +1,5 @@
 <template>
-  <el-row class="asn-col-lg asn-home">
+  <el-row class="asn-col-lg">
     <el-col :xs="12" :sm="16" :lg="18">
       <asn-app-list :data="data" layout="home" />
     </el-col>

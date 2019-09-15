@@ -40,92 +40,91 @@
   }
 }
 
+
+
 //==============首页==========
-.asn-home {
-  margin: 10px auto;
+.asn-app-list {
+  padding-bottom: 5px;
 
-  .asn-app-list {
-    padding-bottom: 5px;
-    // cursor: pointer;
-    a {
-      text-decoration: none;
-      display: block;
-      color: #333;
-    }
+  a {
+    text-decoration: none;
+    display: block;
+    color: #333;
+  }
 
-    .asn-app-list_icon {
-      text-align: center;
+  .asn-app-list_icon {
+    text-align: center;
 
-      img {
-        width: 100px;
-        height: 100px;
-        border-radius: 18px;
-        margin-bottom: 10px;
-      }
-    }
-
-    .asn-app-list_status {
-      display: flex;
-      justify-content: space-between;
-      font-size: 12px;
-      color: #909399;
-    }
-
-    .asn-app-name {
-      margin-top: 20px;
-      height: 40px;
-      line-height: 20px;
-      font-size: 14px;
-      -webkit-line-clamp: 2;
-    }
-
-    .asn-app-desc {
-      height: 44px;
-      line-height: 20px;
-      margin: 5px auto 10px;
-      font-size: 12px;
-      color: #777;
-      -webkit-line-clamp: 2;
-    }
-
-    .asn-category {
-      height: 18px;
-      //text-align: left;
-      display: inline-block;
-      line-height: 18px;
-      padding: 0 4px;
-      font-size: 12px;
-      color: #FFFFFF;
-      background: #409EFF;
-      border-radius: 3px;
-      text-decoration: none;
-    }
-
-    @keyframes circle {
-      0% {
-        transform: rotate(0deg);
-      }
-      100% {
-        transform: rotate(360deg);
-      }
-    }
-
-    :hover {
-      .asn-app-list_icon > img {
-        animation: circle 3s infinite linear;
-      }
-
-      :not(img) {
-        transform: none;
-        color: #FFFFFF;
-      }
-
-      transform: translateY(-3px);
-      background: #363F48;
+    img {
+      width: 100px;
+      height: 100px;
+      border-radius: 18px;
+      margin-bottom: 10px;
     }
   }
 
+  .asn-app-list_status {
+    display: flex;
+    justify-content: space-between;
+    font-size: 12px;
+    color: #909399;
+  }
+
+  .asn-app-name {
+    margin-top: 20px;
+    height: 40px;
+    line-height: 20px;
+    font-size: 14px;
+    -webkit-line-clamp: 2;
+  }
+
+  .asn-app-desc {
+    height: 44px;
+    line-height: 20px;
+    margin: 5px auto 10px;
+    font-size: 12px;
+    color: #777;
+    -webkit-line-clamp: 2;
+  }
+
+  .asn-category {
+    margin-left: 5px;
+    height: 18px;
+    display: inline-block;
+    line-height: 18px;
+    padding: 0 4px;
+    font-size: 12px;
+    color: #FFFFFF;
+    background: #409EFF;
+    border-radius: 3px;
+    text-decoration: none;
+  }
+
+  @keyframes circle {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+
+  &:hover {
+    .asn-app-list_icon > img {
+      animation: circle 3s infinite linear;
+    }
+
+    p, i, a {
+      color: #FFFFFF;
+    }
+    .el-card {
+      background: #363F48;
+    }
+
+    transform: translateY(-3px);
+  }
 }
+
 
 //===========热门推荐==========
 .asn-app-hot {

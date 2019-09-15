@@ -20,7 +20,7 @@ export default new Router({
       children: HomeRoute,
     },
     {
-      path: '/apps/:id',
+      path: '/apps',
       component: Layout,
       redirect: '',
       children: AppRoute,

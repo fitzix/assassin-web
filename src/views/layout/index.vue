@@ -5,7 +5,7 @@
         <a href="" class="asn-nav-logo">
           <img src="~src/assets/img/logo.png" alt="" />
         </a>
-        <el-menu :default-active="activeIndex" mode="horizontal" router>
+        <el-menu :default-active="defaultActive" mode="horizontal" router>
           <el-menu-item index="/">首页</el-menu-item>
           <el-menu-item index="/apps">应用</el-menu-item>
           <el-menu-item index="/books">书籍</el-menu-item>
@@ -13,7 +13,7 @@
           <el-menu-item index="/community">社区</el-menu-item>
           <el-menu-item>
             <el-input v-model="searchKey" placeholder="请输入内容" size="medium" class="asn-nav-search">
-              <i class="el-icon-search el-input__icon" slot="suffix" @click="x"></i>
+              <i class="el-icon-search el-input__icon" slot="suffix" @click="search"></i>
             </el-input>
           </el-menu-item>
         </el-menu>
@@ -51,13 +51,21 @@ export default {
   data() {
     return {
       searchKey: '',
-      activeIndex: '1',
     };
   },
   methods: {
-    x() {
-      alert(2333);
+    search() {
+      this.$router.push({ name: '' });
     },
+  },
+  computed: {
+    defaultActive() {
+      return this.$route.path;
+    },
+  },
+  created() {
+    this.$store.dispatch('app/setTags');
+    this.$store.dispatch('app/setCategory');
   },
 };
 </script>
