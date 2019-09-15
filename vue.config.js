@@ -1,10 +1,27 @@
-// vue.config.js
 const path = require('path');
+const glob = require('glob');
+
 function resolve(dir) {
   return path.join(__dirname, dir);
 }
 
+function getEntry(globPath) {
+  let entries = {};
+  glob.sync(globPath).forEach(function(entry) {
+    let tmp = entry.split('/').splice(-3);
+    entries[tmp[1]] = {
+      entry: 'src/' + tmp[0] + '/' + tmp[1] + '/' + 'index.js',
+      template: 'src/' + tmp[0] + '/' + tmp[1] + '/' + 'index.html',
+      filename: `${tmp[1]}.html`,
+    };
+  });
+  return entries;
+}
+
+let pages = getEntry('./src/pages/**?/*.html');
+
 module.exports = {
+  pages,
   configureWebpack: {
     resolve: {
       alias: {
