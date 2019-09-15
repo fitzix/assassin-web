@@ -3,7 +3,7 @@
     <h3>热门应用</h3>
     <ul>
       <li v-for="item in data" :key="item.id">
-        <router-link :to="{ name: item.type ? 'asn-app-info' : 'asn-book-info', params: { id: item.id } }" class="item">
+        <router-link :to="{ name: item.type ? 'asn-book-info' : 'asn-app-info', params: { id: item.id } }" class="item">
           <div class="item-icon">
             <img :src="item.icon | imgPrefix" alt="" />
             <a href="http://baidu.com">{{ item.category | asnTranslate(categories) }}</a>

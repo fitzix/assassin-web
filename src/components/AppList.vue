@@ -2,7 +2,7 @@
   <el-row :gutter="5" v-if="data.length > 0">
     <el-col :lg="responsiveLayout['lg']" :sm="responsiveLayout['sm']" :xs="responsiveLayout['xs']" v-for="item in data" :key="item.id" class="asn-app-list">
       <el-card :body-style="{ padding: '20px 10px 10px' }">
-        <router-link :to="{ name: item.type ? 'asn-app-info' : 'asn-book-info', params: { id: item.id } }">
+        <router-link :to="{ name: item.type ? 'asn-book-info' : 'asn-app-info', params: { id: item.id } }">
           <div class="asn-app-list_icon">
             <img :src="item.icon | imgPrefix" alt />
           </div>

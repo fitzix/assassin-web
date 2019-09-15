@@ -2,6 +2,10 @@ import { CDN_REPOSITORY } from 'src/const';
 import { ASN_APP_TYPE } from 'src/const/index';
 
 export function cdnPrefix(url, type) {
+  if (!url) {
+    return '';
+  }
+
   switch (type) {
     case 'article':
       type = CDN_REPOSITORY.ArticlePath;

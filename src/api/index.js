@@ -11,3 +11,7 @@ export function GetTags() {
 export function GetCategories() {
   return axios.get('/categories');
 }
+
+export function GetDownloadTypes() {
+  return axios.get('/downloads');
+}

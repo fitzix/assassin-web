@@ -1,20 +1,19 @@
-@import "common";
-@import "markdown.css";
+@import 'common';
+@import 'markdown.css';
 
 #app {
-  font-family: "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", Arial, sans-serif;
+  font-family: 'Helvetica Neue', Helvetica, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', '微软雅黑', Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-size: 15px;
 
   .el-header {
-    border-bottom: .3px #E2E2E2 solid;
+    border-bottom: 0.3px #e2e2e2 solid;
   }
 
   .el-main {
     padding: 0;
   }
-
 }
 
 //==============导航栏==========
@@ -39,8 +38,6 @@
     }
   }
 }
-
-
 
 //==============首页==========
 .asn-app-list {
@@ -94,8 +91,8 @@
     line-height: 18px;
     padding: 0 4px;
     font-size: 12px;
-    color: #FFFFFF;
-    background: #409EFF;
+    color: #ffffff;
+    background: #409eff;
     border-radius: 3px;
     text-decoration: none;
   }
@@ -114,17 +111,18 @@
       animation: circle 3s infinite linear;
     }
 
-    p, i, a {
-      color: #FFFFFF;
+    p,
+    i,
+    a {
+      color: #ffffff;
     }
     .el-card {
-      background: #363F48;
+      background: #363f48;
     }
 
     transform: translateY(-3px);
   }
 }
-
 
 //===========热门推荐==========
 .asn-app-hot {
@@ -134,9 +132,9 @@
 
   & > h3 {
     margin: 0 auto;
-    border-top: 2px solid #409EFF;
+    border-top: 2px solid #409eff;
     border-bottom: 1px dashed #e6e8eb;
-    padding: .6rem;
+    padding: 0.6rem;
   }
 
   ul {
@@ -157,7 +155,7 @@
       a {
         text-decoration: none;
         font-size: 12px;
-        color: #409EFF;
+        color: #409eff;
         line-height: 22px;
       }
 
@@ -199,7 +197,7 @@
 }
 
 .asn-app-info {
-  background: #F8F8F8;
+  background: #f8f8f8;
 
   .head {
     position: relative;
@@ -239,7 +237,7 @@
         display: flex;
         justify-content: center;
         list-style: none;
-        color: #FFFFFF;
+        color: #ffffff;
         font-size: 12px;
         margin-top: 20px;
 
@@ -247,7 +245,7 @@
           margin-left: 10px;
 
           a {
-            color: #FFFFFF;
+            color: #ffffff;
             margin-left: 10px;
           }
         }
@@ -264,7 +262,7 @@
       overflow: hidden;
 
       .el-carousel {
-        background: #FFFFFF;
+        background: #ffffff;
         padding: 20px;
 
         .el-carousel__item {
@@ -275,13 +273,13 @@
         }
 
         .el-carousel__button {
-          background: #4EAADE;
+          background: #4eaade;
         }
       }
     }
 
     .status {
-      background: #FFFFFF;
+      background: #ffffff;
       overflow: hidden;
       padding: 20px 15px;
       height: 390px;
@@ -299,23 +297,24 @@
         margin-bottom: 30px;
       }
 
-      .download, .donate {
+      .download,
+      .donate {
         text-decoration: none;
         display: block;
         padding: 12px 6px;
-        background: #4EAADE;
-        color: #FFFFFF;
+        background: #4eaade;
+        color: #ffffff;
         border-radius: 4px;
         font-weight: 600;
         margin-top: 15px;
       }
 
       .download {
-        background: #4EAADE;
+        background: #4eaade;
       }
 
       .donate {
-        background: #FD7E81;
+        background: #fd7e81;
       }
 
       .info-title {
@@ -327,7 +326,7 @@
         margin-top: 20px;
 
         p {
-          font-size: .85rem;
+          font-size: 0.85rem;
           line-height: 26px;
           padding: 10px;
           display: flex;
@@ -339,17 +338,17 @@
     .content-desc {
       margin-top: 30px;
       .hot {
-        background: #FFFFFF;
+        background: #ffffff;
         padding: 40px 20px;
       }
     }
     .content-version {
       margin-top: 30px;
-      background: #FFFFFF;
+      background: #ffffff;
       text-align: center;
-      padding: 20px 35px;
+      padding: 15px 20px;
       p {
-        padding: 10px;
+        margin-bottom: 15px;
         font-size: 1.2em;
         font-weight: 500;
       }
@@ -359,8 +358,9 @@
         border-collapse: collapse;
         border-radius: 3px;
 
-        th, td {
-          border-bottom: 1px solid rgba(255,255,255, .1);
+        th,
+        td {
+          border-bottom: 1px solid rgba(255, 255, 255, 0.1);
           text-align: left;
         }
 
@@ -371,9 +371,10 @@
           }
         }
         tbody {
-          color: #FFFFFF;
+          color: #ffffff;
           td {
             padding: 5px 10px;
+            height: 25px;
           }
         }
 
@@ -383,12 +384,12 @@
         .download {
           display: inline-block;
           width: 100px;
-          height: 30px;
+          height: 25px;
           background: #4eaade;
           color: #fff;
           text-align: center;
           text-decoration: none;
-          line-height: 30px;
+          line-height: 25px;
           margin-left: 5px;
           font-size: 14px;
         }
@@ -418,7 +419,3 @@
     }
   }
 }
-
-
-
-

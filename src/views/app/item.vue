@@ -75,8 +75,7 @@
               <td>{{ item.createdAt | dateFormat }}</td>
               <td>37.8M</td>
               <td class="down-cell">
-                <a class="download" href>百度云</a>
-                <a class="download" href>Google Drive</a>
+                <a class="download" v-for="v in item.downloads" :key="v.id" :href="v.url">{{ v.downloadId | asnTranslate }}</a>
               </td>
             </tr>
           </tbody>
@@ -136,6 +135,9 @@ export default {
     },
     categories() {
       return this.$store.getters.categories;
+    },
+    downloads() {
+      return this.$store.getters.downloads;
     },
   },
   components: {

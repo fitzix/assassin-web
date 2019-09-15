@@ -1,9 +1,10 @@
-import { GetTags, GetCategories } from 'src/api';
+import { GetTags, GetCategories, GetDownloadTypes } from 'src/api';
 import { parseListToObject } from 'src/utils/common';
 
 const state = {
   tags: {},
   categories: {},
+  downloads: {},
 };
 
 const mutations = {
@@ -12,6 +13,9 @@ const mutations = {
   },
   SET_CATEGORIES(state, data) {
     state.categories = data;
+  },
+  SET_DOWNLOADS(state, data) {
+    state.downloads = data;
   },
 };
 
@@ -24,6 +28,11 @@ const actions = {
   setCategory({ commit }) {
     GetCategories().then(resp => {
       commit('SET_CATEGORIES', parseListToObject(resp));
+    });
+  },
+  setDownloads({ commit }) {
+    GetDownloadTypes().then(resp => {
+      commit('SET_DOWNLOADS', parseListToObject(resp));
     });
   },
 };
