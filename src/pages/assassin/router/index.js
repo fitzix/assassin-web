@@ -4,12 +4,12 @@ import Router from 'vue-router';
 import HomeRoute from './home';
 import AppRoute from './app';
 
-const Layout = () => import('src/views/layout');
+const Layout = () => import('assassin/views/layout');
 
 Vue.use(Router);
 
 export default new Router({
-  mode: 'history',
+  // mode: 'history',
   base: process.env.BASE_URL,
   routes: [
     {

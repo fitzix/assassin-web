@@ -4,6 +4,12 @@
     "paths": {
       "src/*": [
         "src/*"
+      ],
+      "assassin/*": [
+        "src/pages/assassin"
+      ],
+      "templar/*": [
+        "src/pages/templar"
       ]
     }
   },

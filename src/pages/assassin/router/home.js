@@ -1,4 +1,4 @@
-const home = () => import('src/views/home/index');
+const home = () => import('assassin/views/home/index');
 
 export default [
   {

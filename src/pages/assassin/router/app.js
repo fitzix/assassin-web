@@ -1,5 +1,5 @@
-const asnAppItem = () => import('src/views/app/item');
-const asnAppList = () => import('src/views/app/index');
+const asnAppItem = () => import('assassin/views/app/item');
+const asnAppList = () => import('assassin/views/app/index');
 
 export default [
   {

@@ -1,5 +1,4 @@
 import axios from 'axios';
-import store from 'src/store';
 import { Message } from 'element-ui';
 import { cdnPrefix } from './index';
 import { CDN_REPOSITORY } from 'src/const';
@@ -17,12 +16,12 @@ service.interceptors.request.use(
   config => {
     // do something before request is sent
 
-    if (store.getters.token) {
-      // let each request carry token
-      // ['X-Token'] is a custom headers key
-      // please modify it according to the actual situation
-      // config.headers['X-Token'] = getToken();
-    }
+    // if (store.getters.token) {
+    // let each request carry token
+    // ['X-Token'] is a custom headers key
+    // please modify it according to the actual situation
+    // config.headers['X-Token'] = getToken();
+    // }
     return config;
   },
   error => {
