@@ -5,12 +5,12 @@ module.exports = {
   pages: MutiPageConfig,
   productionSourceMap: false,
   devServer: {
-    index: 'assassin.html',
+    index: 'templar.html',
   },
   configureWebpack: {
     resolve: {
       alias: {
-        src: path.resolve(__dirname, 'src/'),
+        src: path.resolve(__dirname, 'src'),
         assassin: path.resolve(__dirname, 'src/pages/assassin'),
         templar: path.resolve(__dirname, 'src/pages/templar'),
       },
