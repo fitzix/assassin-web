@@ -31,23 +31,30 @@
       <el-button type="danger" icon="el-icon-remove-outline" size="mini">批量删除</el-button>
       <el-table :data="tableData" style="width: 100%">
         <el-table-column type="index" width="50" />
-        <el-table-column label="icon" width="80">
+        <el-table-column label="icon">
           <template #default="scope">
             <el-image style="width: 30px; height: 30px" :src="scope.row.icon | imgPrefix" fit="fill"></el-image>
           </template>
         </el-table-column>
-        <el-table-column prop="id" label="ID" width="180" />
-        <el-table-column prop="name" label="名称" width="180" show-overflow-tooltip />
-        <el-table-column prop="hot" label="下载量" width="80" />
+        <el-table-column prop="id" label="ID" />
+        <el-table-column prop="name" label="名称" show-overflow-tooltip />
+        <el-table-column prop="hot" label="下载量" />
         <el-table-column prop="view" label="浏览量" />
         <el-table-column prop="versionAt" label="更新时间" :formatter="tableDateFormatter" />
-        <el-table-column label="状态" width="80">
+        <el-table-column label="状态">
           <template #default="scope">
             <el-switch :value="scope.row.status" active-color="#13ce66" inactive-color="#ff4949" />
           </template>
         </el-table-column>
+        <el-table-column label="操作">
+          <template #default="scope">
+            <el-button @click="goToDetail(scope.row)" type="text" size="small">查看</el-button>
+            <el-button type="text" size="small">编辑</el-button>
+            <el-button type="text" size="small" style="color:#F56C6C;">删除</el-button>
+          </template>
+        </el-table-column>
       </el-table>
-      <asn-page :search-query="searchQuery"></asn-page>
+      <asn-page :search-query="searchQuery" :total="total"></asn-page>
     </div>
   </div>
 </template>
@@ -72,12 +79,15 @@ export default {
   methods: {
     search() {
       GetAppList(this.searchQuery).then(resp => {
-        this.searchQuery.total = resp.total;
+        this.total = resp.total;
         this.tableData = resp.info;
       });
     },
     tableDateFormatter(row, column, cellValue) {
       return dateTimeFormat(cellValue);
+    },
+    goToDetail(row) {
+      this.$router.push({ name: 'asn-app-item', params: { id: row.id } });
     },
   },
   components: {

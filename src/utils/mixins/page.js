@@ -3,7 +3,7 @@ export default {
     return {
       tableData: [],
       searchQuery: {
-        pageSize: 20,
+        pageSize: 50,
         pageNum: 1,
       },
       total: 0,

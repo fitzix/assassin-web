@@ -6,6 +6,7 @@ import Router from 'vue-router';
 
 const Layout = () => import('templar/views/layout');
 const App = () => import('templar/views/app');
+const AppItem = () => import('templar/views/app/item');
 
 Vue.use(Router);
 
@@ -30,6 +31,11 @@ export default new Router({
           path: 'index',
           component: App,
           name: 'asn-app-index',
+        },
+        {
+          path: ':id',
+          component: AppItem,
+          name: 'asn-app-item',
         },
       ],
     },

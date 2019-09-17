@@ -1,5 +1,5 @@
 <template>
-  <el-pagination class="asn-pagination" :page-size="searchQuery.pageSize" :current-page="searchQuery.pageNum" :total="searchQuery.total" @size-change="sizeChange" :current-change="currentChange"></el-pagination>
+  <el-pagination class="asn-pagination" :page-size="searchQuery.pageSize" :current-page="searchQuery.pageNum" :total="total" @size-change="sizeChange" :current-change="currentChange"></el-pagination>
 </template>
 
 <script>
@@ -11,9 +11,13 @@ export default {
       type: Object,
       default: () => ({
         pageSize: 20,
-        total: 0,
         pageNum: 1,
       }),
+    },
+    total: {
+      required: true,
+      type: Number,
+      default: 0,
     },
   },
   methods: {

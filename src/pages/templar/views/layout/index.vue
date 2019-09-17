@@ -1,7 +1,7 @@
 <template>
   <el-container class="asn-body">
     <el-header height="auto" class="asn-header">
-      <el-menu :default-active="defaultActive" mode="horizontal">
+      <el-menu :default-active="defaultActive" mode="horizontal" router>
         <li role="menuitem" class="el-menu-item assass">
           <img src="~src/assets/img/logo.png" alt="" />
         </li>
