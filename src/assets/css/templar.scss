@@ -1,0 +1,54 @@
+#app {
+  background: #f0f0f3;
+}
+
+.asn-pagination {
+  text-align: center;
+  margin-top: 15px;
+}
+
+.asn-body {
+  & > .asn-header {
+    border-bottom: 1px #e2e2e2 solid;
+    padding: 0;
+    .el-menu--horizontal {
+      display: flex;
+      flex-flow: row wrap;
+      justify-content: space-between;
+      img {
+        height: 54px;
+      }
+      // & > li:first-of-type {
+      //   margin-right: auto;
+      // }
+      // & > li:last-of-type {
+      //   margin-left: auto;
+      // }
+      // & > li:not(:first-of-type):not(:last-of-type) {
+      //   flex: 1;
+      //   text-align: center;
+      // }
+    }
+  }
+  & > .asn-content {
+    padding: 0;
+    & > .asn-apps {
+      & > .asn-apps-search {
+        margin: 7px 10px;
+        border-radius: 10px;
+        padding: 18px 10px 0 10px;
+        background: #ffffff;
+      }
+      > .asn-apps-list {
+        background: #ffffff;
+        margin: 0 10px;
+        border-radius: 10px;
+        padding: 15px;
+        height: 500px;
+        > .el-table {
+          margin-top: 10px;
+        }
+      }
+    }
+  }
+}

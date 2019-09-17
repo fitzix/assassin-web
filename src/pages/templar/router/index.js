@@ -5,11 +5,12 @@ import Router from 'vue-router';
 // import AppRoute from './app';
 
 const Layout = () => import('templar/views/layout');
+const App = () => import('templar/views/app');
 
 Vue.use(Router);
 
 export default new Router({
-  mode: 'history',
+  // mode: 'history',
   base: process.env.BASE_URL,
   routes: [
     {
@@ -19,11 +20,18 @@ export default new Router({
       // redirect: '/',
       // children: HomeRoute,
     },
-    // {
-    // path: '/apps',
-    // component: Layout,
-    // redirect: '',
-    // children: AppRoute,
-    // },
+    {
+      path: '/apps',
+      component: Layout,
+      name: 'asn-apps',
+      redirect: '/apps/index',
+      children: [
+        {
+          path: 'index',
+          component: App,
+          name: 'asn-app-index',
+        },
+      ],
+    },
   ],
 });

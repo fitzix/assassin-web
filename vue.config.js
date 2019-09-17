@@ -6,6 +6,7 @@ module.exports = {
   productionSourceMap: false,
   devServer: {
     index: 'templar.html',
+    port: 8082,
   },
   configureWebpack: {
     resolve: {

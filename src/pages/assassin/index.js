@@ -5,7 +5,7 @@ import router from './router';
 import store from './store';
 import * as filters from './filters';
 
-import { Menu, MenuItem, Input, Icon, Row, Col, Card, Carousel, CarouselItem, Container, Header, Aside, Main, Footer, Message } from 'element-ui';
+import { Menu, MenuItem, Input, Icon, Row, Col, Card, Carousel, CarouselItem, Container, Header, Aside, Main, Footer } from 'element-ui';
 
 Vue.use(Menu);
 Vue.use(MenuItem);
@@ -21,7 +21,6 @@ Vue.use(Header);
 Vue.use(Aside);
 Vue.use(Main);
 Vue.use(Footer);
-Vue.use(Message);
 
 Vue.config.productionTip = false;
 

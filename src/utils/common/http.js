@@ -79,11 +79,7 @@ service.interceptors.response.use(
   },
   error => {
     console.log('err' + error); // for debug
-    Message({
-      message: error.message,
-      type: 'error',
-      duration: 5 * 1000,
-    });
+    Message.error(error.message);
     return Promise.reject(error);
   }
 );
