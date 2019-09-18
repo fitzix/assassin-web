@@ -1,6 +1,6 @@
 <template>
   <div class="asn-apps">
-    <el-form label-width="60px" inline class="asn-apps-search">
+    <el-form label-width="60px" inline>
       <el-form-item label="关键字">
         <el-input v-model="searchQuery.key"></el-input>
       </el-form-item>

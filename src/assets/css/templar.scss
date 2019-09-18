@@ -1,6 +1,5 @@
 #app {
   font-family: 'Helvetica Neue', Helvetica, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', '微软雅黑', Arial, sans-serif;
-  background: #f0f0f3;
 }
 
 .asn-pagination {
@@ -10,8 +9,6 @@
 
 .asn-body {
   & > .asn-header {
-    border-bottom: 1px #e2e2e2 solid;
-    padding: 0;
     .el-menu--horizontal {
       display: flex;
       flex-flow: row wrap;
@@ -32,19 +29,9 @@
     }
   }
   & > .asn-content {
-    padding: 0;
     & > .asn-apps {
-      & > .asn-apps-search {
-        margin: 7px 10px;
-        border-radius: 10px;
-        padding: 18px 10px 0 10px;
-        background: #ffffff;
-      }
       > .asn-apps-list {
         background: #ffffff;
-        margin: 0 10px;
-        border-radius: 10px;
-        padding: 15px;
         height: 500px;
         > .el-table {
           margin-top: 10px;
@@ -52,11 +39,7 @@
       }
     }
     > .asn-app-item {
-      background: #ffffff;
-      margin: 7px 10px;
-      padding: 13px 10px;
-      border-radius: 10px;
-      > h2 {
+      > h3 {
         // font-size: 28px;
         font-weight: 400;
       }

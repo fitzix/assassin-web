@@ -1,12 +1,13 @@
 import axios from 'axios';
 import { Message } from 'element-ui';
 import { cdnPrefix } from './index';
-import { CDN_REPOSITORY } from 'src/const';
+import { CDN_REPOSITORY, ASN_API } from 'src/const';
 
 // create an axios instance
 const service = axios.create({
   // baseURL: process.env.VUE_APP_BASE_API,
-  baseURL: 'http://localhost:8080/api/v1',
+  // baseURL: 'http://localhost:8080/api/v1',
+  baseURL: ASN_API.baseUrl,
   // withCredentials: true, // send cookies when cross-domain requests
   timeout: 5000, // request timeout
 });

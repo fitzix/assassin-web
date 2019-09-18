@@ -42,4 +42,11 @@ const ASN_GITALK = {
   distractionFreeMode: false,
 };
 
-export { ASN_APP_LIST_RESPONSIVE_LAYOUT, CDN_REPOSITORY, ASN_APP_TYPE, ASN_ENCRYPT, ASN_GITALK };
+const ASN_API = {
+  baseUrl: `${process.env.VUE_APP_BASE_URL}/api/v1`,
+  get uploadApi() {
+    return `${this.baseUrl}/upload`;
+  },
+};
+
+export { ASN_APP_LIST_RESPONSIVE_LAYOUT, CDN_REPOSITORY, ASN_APP_TYPE, ASN_ENCRYPT, ASN_GITALK, ASN_API };
