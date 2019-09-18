@@ -1,7 +1,7 @@
 import Vue from 'vue';
 import App from './index.vue';
 import router from './router';
-// import store from './store';
+import store from './store';
 import * as filters from './filters';
 import ElementUI from 'element-ui';
 import 'src/assets/css/templar.scss';
@@ -16,5 +16,6 @@ Object.keys(filters).forEach(key => {
 
 new Vue({
   router,
+  store,
   render: h => h(App),
 }).$mount('#app');
