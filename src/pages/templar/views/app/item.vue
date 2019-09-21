@@ -56,7 +56,7 @@
       <el-table :data="app.versions" style="width: 100%">
         <el-table-column type="index" width="50" />
         <el-table-column prop="name" label="版本号" />
-        <el-table-column prop="size" label="版本号" />
+        <el-table-column prop="size" label="文件大小" />
         <el-table-column label="状态">
           <template #default="scope">
             <el-switch :value="scope.status" active-color="#13ce66" inactive-color="#ff4949" />
@@ -67,13 +67,52 @@
           <template slot-scope="scope">
             <span v-for="d in scope.row.downloads" :key="d.id">
               <el-button type="text">{{ d.downloadId | asnTranslate(downloads) }}</el-button>
-              <el-button type="text" icon="el-icon-document-copy" :class="`asn-copy-${d.id}`" @click="ttt(d.id, d.secret)">复制秘钥</el-button>
+              <el-button type="text" icon="el-icon-document-copy" :class="`asn-copy-${d.id}`" @click="clipboard(d.id, d.secret)">复制秘钥</el-button>
               <el-divider direction="vertical"></el-divider>
             </span>
           </template>
         </el-table-column>
+        <el-table-column label="操作">
+          <template #default="scope">
+            <el-button type="text" size="small" @click="editVersion(scope.row)">编辑</el-button>
+            <el-button type="text" size="small" style="color:#F56C6C;">删除</el-button>
+          </template>
+        </el-table-column>
       </el-table>
     </div>
+
+    <!-- dialog -->
+
+    <!-- 版本dialog -->
+    <el-dialog title="版本信息" :visible.sync="versionDialogVisible" class="version-dialog">
+      <el-form :model="versionForm" label-width="120px">
+        <el-form-item label="版本名称">
+          <el-input v-model="versionForm.name" autocomplete="off"></el-input>
+        </el-form-item>
+        <el-form-item label="文件大小">
+          <el-input v-model="versionForm.size" autocomplete="off"></el-input>
+        </el-form-item>
+        <el-form-item label="是否发布" prop="status">
+          <el-switch v-model="versionForm.status"></el-switch>
+        </el-form-item>
+        <el-form-item v-for="(download, index) in versionForm.downloads" :label="'渠道' + (index + 1)" :key="download.id">
+          <el-select v-model="download.downloadId" placeholder="请选择下载渠道">
+            <el-option v-for="(dName, dType) in downloads" :key="dType" :label="dName" :value="Math.trunc(dType)"></el-option>
+          </el-select>
+          <i>url: </i>
+          <el-input v-model="download.url" autocomplete="off" class="version-secret-input"></el-input>
+          <i>秘钥: </i>
+          <el-input v-model="download.secret" autocomplete="off" class="version-secret-input"></el-input>
+          <el-button type="danger" @click.prevent="removeVersion(index)">删除</el-button>
+        </el-form-item>
+      </el-form>
+      <div slot="footer" class="dialog-footer">
+        <el-button @click="addDownload">添加下载渠道</el-button>
+        <el-button @click="versionDialogVisible = false">取 消</el-button>
+        <el-button type="primary" @click="versionDialogVisible = false">确 定</el-button>
+      </div>
+    </el-dialog>
+
     <!-- <el-form ref="form" :model="app" label-width="80px">
       <el-form-item label="名称">
         <el-input v-model="app.name"></el-input>
@@ -100,6 +139,7 @@ import AsnUpload from 'src/components/upload';
 import Clipboard from 'clipboard';
 import tableMix from 'src/utils/mixins/table';
 import { AESDecrypt } from 'src/utils/common/encrypt';
+import _ from 'loadsh';
 
 export default {
   mixins: [tableMix],
@@ -109,6 +149,8 @@ export default {
         name: '',
         carousels: [],
       },
+      versionDialogVisible: false,
+      versionForm: {},
       disabled: false,
       uploadApi: ASN_API.uploadApi,
     };
@@ -138,7 +180,7 @@ export default {
       console.log(err, file, fileList);
       debugger;
     },
-    ttt(id, ss) {
+    clipboard(id, ss) {
       let clipboard = new Clipboard(`.asn-copy-${id}`, {
         text() {
           return AESDecrypt(ss);
@@ -155,6 +197,16 @@ export default {
         // 释放内存
         clipboard.destroy();
       });
+    },
+    editVersion(row) {
+      this.versionForm = _.cloneDeep(row);
+      this.versionDialogVisible = true;
+    },
+    addDownload() {
+      this.versionForm.downloads.push({});
+    },
+    removeVersion(index) {
+      this.versionForm.downloads.splice(index, 1);
     },
   },
   computed: {

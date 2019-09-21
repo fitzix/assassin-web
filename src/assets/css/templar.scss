@@ -79,7 +79,20 @@
             border-left: 4px solid #42b983;
             margin: 2em 0;
             padding-left: 20px;
+            font-size: 0.9em;
           }
+        }
+      }
+      .version-dialog {
+        .el-input {
+          width: auto;
+        }
+        i {
+          margin-left: 1em;
+          margin-right: 0.7em;
+        }
+        .version-secret-input {
+          margin-right: 1em;
         }
       }
     }
