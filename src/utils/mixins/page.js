@@ -1,7 +1,9 @@
+import table from './table';
+
 export default {
+  mixins: [table],
   data() {
     return {
-      tableData: [],
       searchQuery: {
         pageSize: 50,
         pageNum: 1,
@@ -10,7 +12,6 @@ export default {
     };
   },
   methods: {
-    search() {},
     pageChange(val) {
       this.searchQuery.pageSize = val;
       this.search();
@@ -19,8 +20,5 @@ export default {
       this.searchQuery.pageNum = val;
       this.search();
     },
-  },
-  created() {
-    this.search();
   },
 };

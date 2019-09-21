@@ -40,7 +40,7 @@
         <el-table-column prop="name" label="名称" show-overflow-tooltip />
         <el-table-column prop="hot" label="下载量" />
         <el-table-column prop="view" label="浏览量" />
-        <el-table-column prop="versionAt" label="更新时间" :formatter="tableDateFormatter" />
+        <el-table-column prop="versionAt" label="更新时间" :formatter="tableDateTimeFormatter" />
         <el-table-column label="状态">
           <template #default="scope">
             <el-switch :value="scope.row.status" active-color="#13ce66" inactive-color="#ff4949" />
@@ -62,7 +62,6 @@
 <script>
 import AsnPage from 'src/components/page';
 import { GetAppList } from 'src/api/app';
-import { dateTimeFormat } from 'src/utils/common/date';
 import pageMix from 'src/utils/mixins/page';
 export default {
   mixins: [pageMix],
@@ -82,9 +81,6 @@ export default {
         this.total = resp.total;
         this.tableData = resp.info;
       });
-    },
-    tableDateFormatter(row, column, cellValue) {
-      return dateTimeFormat(cellValue);
     },
     goToDetail(row) {
       this.$router.push({ name: 'asn-app-item', params: { id: row.id } });

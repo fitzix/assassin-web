@@ -45,7 +45,6 @@ export function imgPrefix(url) {
 }
 
 export function appContentPrefix(id, serverType) {
-  console.log(id, serverType);
   return cdnPrefix(id, 'app', serverType);
 }
 

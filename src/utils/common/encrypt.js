@@ -1,8 +1,8 @@
 const CryptoJS = require('crypto-js');
 import { ASN_ENCRYPT } from 'src/const';
 
-const iv = CryptoJS.enc.Utf8.parse(ASN_ENCRYPT.iv);
-const key = CryptoJS.enc.Utf8.parse(ASN_ENCRYPT.key);
+const iv = CryptoJS.enc.Utf8.parse(ASN_ENCRYPT.aes.iv);
+const key = CryptoJS.enc.Utf8.parse(ASN_ENCRYPT.aes.key);
 
 //解密方法
 export function AESDecrypt(word) {
