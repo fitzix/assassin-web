@@ -1,4 +1,5 @@
 import axios from 'axios';
+import store from 'src/pages/templar/store';
 import { Message } from 'element-ui';
 import { cdnPrefix } from './index';
 import { CDN_REPOSITORY, ASN_API } from 'src/const';
@@ -23,6 +24,9 @@ service.interceptors.request.use(
     // please modify it according to the actual situation
     // config.headers['X-Token'] = getToken();
     // }
+    // config.headers;
+    // config.headers['Authorization'] = 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiJVR2hLN2QtcjM0aGVvQVJWIiwiY29kZSI6MCwiZXhwIjoxNTY5NDEyMTA3LCJpc3MiOiJhc24ueHl6In0.H1pUNRAO8UOFC1dX8eXikWrTcouJEaTEyfEGiGRDxtg';
+    config.headers.Authorization = `Bearer ${store.getters.token}`;
     return config;
   },
   error => {

@@ -63,10 +63,5 @@ export default {
       return this.$route.path;
     },
   },
-  created() {
-    this.$store.dispatch('app/setTags');
-    this.$store.dispatch('app/setCategory');
-    this.$store.dispatch('app/setDownloads');
-  },
 };
 </script>

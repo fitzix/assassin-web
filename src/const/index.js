@@ -24,7 +24,8 @@ const ASN_ENCRYPT = {
 };
 
 const CDN_REPOSITORY = {
-  GithubServer: 'https://raw.githubusercontent.com',
+  GithubRawServer: 'https://raw.githubusercontent.com',
+  GithubServer: 'https://github.com',
   Owner: 'asins-xyz',
   Repo: 'assassin',
   Branch: 'master',

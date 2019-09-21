@@ -11,7 +11,7 @@ const AppItem = () => import('templar/views/app/item');
 Vue.use(Router);
 
 export default new Router({
-  // mode: 'history',
+  mode: process.env.NODE_ENV === 'production' ? 'history' : 'hash',
   base: process.env.BASE_URL,
   routes: [
     {

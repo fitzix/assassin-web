@@ -1,11 +1,4 @@
-const NUM_FORMAT_SUFFIX = [
-  { value: 1e18, symbol: 'E' },
-  { value: 1e15, symbol: 'P' },
-  { value: 1e12, symbol: 'T' },
-  { value: 1e9, symbol: 'G' },
-  { value: 1e6, symbol: 'M' },
-  { value: 1e3, symbol: 'k' },
-];
+const NUM_FORMAT_SUFFIX = [{ value: 1e18, symbol: 'E' }, { value: 1e15, symbol: 'P' }, { value: 1e12, symbol: 'T' }, { value: 1e9, symbol: 'G' }, { value: 1e6, symbol: 'M' }, { value: 1e3, symbol: 'k' }];
 
 export function numberFormat(num, digits = 0) {
   for (let i = 0; i < NUM_FORMAT_SUFFIX.length; i++) {

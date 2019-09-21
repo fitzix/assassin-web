@@ -1,11 +1,10 @@
 import { CDN_REPOSITORY } from 'src/const';
 import { ASN_APP_TYPE } from 'src/const/index';
 
-export function cdnPrefix(url, type) {
+export function cdnPrefix(url, type, serverType) {
   if (!url) {
     return '';
   }
-
   switch (type) {
     case 'article':
       type = CDN_REPOSITORY.ArticlePath;
@@ -16,14 +15,38 @@ export function cdnPrefix(url, type) {
     case 'app':
       type = CDN_REPOSITORY.AppContentPath;
   }
+  let server = CDN_REPOSITORY.GithubRawServer;
   let keys = Object.values(CDN_REPOSITORY);
-  keys.splice(4);
+  keys = keys.slice(2, 5);
   keys.push(type, url);
+  if (serverType === 'web') {
+    server = CDN_REPOSITORY.GithubServer;
+    keys.splice(2, 0, 'tree');
+  }
+
+  keys.unshift(server);
+
   return keys.join('/');
 }
 
 export function imgPrefix(url) {
-  return cdnPrefix(url, 'img');
+  if (Array.isArray(url)) {
+    let resp = [];
+    url.forEach(el => {
+      resp.push({ url: cdnPrefix(el.url, 'img') });
+    });
+    return resp;
+  }
+
+  if (url && url.length < 25) {
+    return cdnPrefix(url, 'img');
+  }
+  return url;
+}
+
+export function appContentPrefix(id, serverType) {
+  console.log(id, serverType);
+  return cdnPrefix(id, 'app', serverType);
 }
 
 export function parseListToObject(dataList) {

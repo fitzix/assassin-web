@@ -7,7 +7,7 @@
         <ul>
           <li>{{ app.versionAt | dateTimeFormat }}</li>
           <li>
-            <a v-for="item in app.tags" :key="item.id" href>{{ item.id | asnTranslate(tags) }}</a>
+            <a v-for="item in app.tags" :key="item.id">{{ item.id | asnTranslate(tags) }}</a>
           </li>
           <li>
             <i class="el-icon-view">&nbsp;{{ app.view }}</i>
