@@ -51,7 +51,7 @@
     </div>
     <div class="version">
       <h3>版本</h3>
-      <el-button type="primary" size="mini">添加版本</el-button>
+      <el-button type="primary" size="mini" @click="addVersion">添加版本</el-button>
 
       <el-table :data="app.versions" style="width: 100%">
         <el-table-column type="index" width="50" />
@@ -84,8 +84,8 @@
     <!-- dialog -->
 
     <!-- 版本dialog -->
-    <el-dialog title="版本信息" :visible.sync="versionDialogVisible" class="version-dialog">
-      <el-form :model="versionForm" label-width="120px">
+    <el-dialog title="版本信息" :visible.sync="versionDialogVisible" width="70%" class="version-dialog">
+      <el-form :model="versionForm" label-width="90px" label-position="left">
         <el-form-item label="版本名称">
           <el-input v-model="versionForm.name" autocomplete="off"></el-input>
         </el-form-item>
@@ -96,20 +96,20 @@
           <el-switch v-model="versionForm.status"></el-switch>
         </el-form-item>
         <el-form-item v-for="(download, index) in versionForm.downloads" :label="'渠道' + (index + 1)" :key="download.id">
-          <el-select v-model="download.downloadId" placeholder="请选择下载渠道">
+          <el-select v-model="download.downloadId" placeholder="请选择下载渠道" :value="download.downloadId">
             <el-option v-for="(dName, dType) in downloads" :key="dType" :label="dName" :value="Math.trunc(dType)"></el-option>
           </el-select>
           <i>url: </i>
           <el-input v-model="download.url" autocomplete="off" class="version-secret-input"></el-input>
           <i>秘钥: </i>
           <el-input v-model="download.secret" autocomplete="off" class="version-secret-input"></el-input>
-          <el-button type="danger" @click.prevent="removeVersion(index)">删除</el-button>
+          <el-button type="danger" @click.prevent="removeDownload(index)" style="margin-left: 1em;">删除</el-button>
         </el-form-item>
       </el-form>
       <div slot="footer" class="dialog-footer">
-        <el-button @click="addDownload">添加下载渠道</el-button>
         <el-button @click="versionDialogVisible = false">取 消</el-button>
-        <el-button type="primary" @click="versionDialogVisible = false">确 定</el-button>
+        <el-button type="primary" @click="addDownload">添加下载渠道</el-button>
+        <el-button type="primary" @click="versionDialogConfirm">确 定</el-button>
       </div>
     </el-dialog>
 
@@ -134,8 +134,9 @@
 
 <script>
 import { GetApp } from 'src/api/app';
+import { apiVersionCU } from 'src/api/version';
 import { ASN_API } from 'src/const';
-import AsnUpload from 'src/components/upload';
+// import AsnUpload from 'src/components/upload';
 import Clipboard from 'clipboard';
 import tableMix from 'src/utils/mixins/table';
 import { AESDecrypt } from 'src/utils/common/encrypt';
@@ -163,7 +164,7 @@ export default {
       return parseInt(val, 10);
     },
     search() {
-      GetApp(this.$route.params.id).then(resp => {
+      GetApp(this.appId).then(resp => {
         this.app = resp;
       });
     },
@@ -178,12 +179,11 @@ export default {
     },
     onError(err, file, fileList) {
       console.log(err, file, fileList);
-      debugger;
     },
-    clipboard(id, ss) {
+    clipboard(id, secret) {
       let clipboard = new Clipboard(`.asn-copy-${id}`, {
         text() {
-          return AESDecrypt(ss);
+          return AESDecrypt(secret);
         },
       });
       clipboard.on('success', () => {
@@ -198,24 +198,39 @@ export default {
         clipboard.destroy();
       });
     },
+    // version dialog
+    addVersion() {
+      this.versionForm = { downloads: [] };
+      this.versionDialogVisible = true;
+    },
     editVersion(row) {
-      this.versionForm = _.cloneDeep(row);
+      let rowCopy = _.cloneDeep(row);
+      rowCopy.downloads.forEach((el, index) => {
+        rowCopy.downloads[index].secret = AESDecrypt(el.secret);
+      });
+      this.versionForm = rowCopy;
       this.versionDialogVisible = true;
     },
     addDownload() {
       this.versionForm.downloads.push({});
     },
-    removeVersion(index) {
+    removeDownload(index) {
       this.versionForm.downloads.splice(index, 1);
+    },
+    versionDialogConfirm() {
+      apiVersionCU(this.appId, this.versionForm);
     },
   },
   computed: {
     token() {
       return { Authorization: `Bearer ${this.$store.getters.token}` };
     },
+    appId() {
+      return this.$route.params.id;
+    },
   },
   components: {
-    AsnUpload,
+    // AsnUpload,
   },
 };
 </script>

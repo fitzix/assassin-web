@@ -18,7 +18,6 @@ const ASN_APP_TYPE = {
 
 const ASN_ENCRYPT = {
   aes: {
-    iv: 'ADB23285B2F0CF1F',
     key: '3C221351CA73FFA6',
   },
 };
