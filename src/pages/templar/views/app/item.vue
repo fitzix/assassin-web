@@ -8,8 +8,8 @@
         <div class="header">
           <h3>{{ app.name }}</h3>
           <div>
-            <el-link type="danger" :href="app.id | appContentPrefix('web')" target="_blank">前往托管网站修改描述文章</el-link>
-            <el-button type="primary" size="mini">修改基础信息</el-button>
+            <el-link type="danger" :href="app.id | appContentPrefix('web')" target="_blank" :disabled="isNew">前往托管网站修改描述文章</el-link>
+            <el-button type="primary" size="mini" @click="openAppDialog">修改基础信息</el-button>
           </div>
         </div>
         <p>
@@ -51,18 +51,18 @@
     </div>
     <div class="version">
       <h3>版本</h3>
-      <el-button type="primary" size="mini" @click="addVersion">添加版本</el-button>
+      <el-button type="primary" size="mini" @click="addVersion" :disabled="isNew">添加版本</el-button>
 
       <el-table :data="app.versions" style="width: 100%">
         <el-table-column type="index" width="50" />
-        <el-table-column prop="name" label="版本号" />
-        <el-table-column prop="size" label="文件大小" />
-        <el-table-column label="状态">
+        <el-table-column prop="name" label="版本号" width="100" />
+        <el-table-column prop="size" label="文件大小" width="100" />
+        <el-table-column label="状态" width="100">
           <template #default="scope">
-            <el-switch :value="scope.status" active-color="#13ce66" inactive-color="#ff4949" />
+            <el-switch :value="scope.row.status" active-color="#13ce66" inactive-color="#ff4949" />
           </template>
         </el-table-column>
-        <el-table-column prop="createdAt" label="更新时间" :formatter="tableDateTimeFormatter" />
+        <el-table-column prop="createdAt" label="更新时间" :formatter="tableDateTimeFormatter" width="150" />
         <el-table-column label="下载渠道">
           <template slot-scope="scope">
             <span v-for="d in scope.row.downloads" :key="d.id">
@@ -72,7 +72,7 @@
             </span>
           </template>
         </el-table-column>
-        <el-table-column label="操作">
+        <el-table-column label="操作" width="100">
           <template #default="scope">
             <el-button type="text" size="small" @click="editVersion(scope.row)">编辑</el-button>
             <el-button type="text" size="small" style="color:#F56C6C;">删除</el-button>
@@ -82,6 +82,42 @@
     </div>
 
     <!-- dialog -->
+    <!--  app信息修改dialog  -->
+    <el-dialog title="app/book信息 (注意: 轮播图第一张为icon)" :visible.sync="appDialogVisible" width="70%">
+      <el-form :model="appForm" label-width="90px" label-position="left">
+        <el-form-item label="icon/轮播图">
+          <asn-upload :file-list="appForm.carousels" @on-success="onUploadSuccess" @on-remove="onUploadRemove" :limit="5"></asn-upload>
+        </el-form-item>
+        <el-form-item label="名称">
+          <el-input v-model="appForm.name" autocomplete="off"></el-input>
+        </el-form-item>
+        <el-form-item label="简述">
+          <el-input v-model="appForm.title" autocomplete="off"></el-input>
+        </el-form-item>
+        <el-form-item label="类型">
+          <el-select v-model="appForm.type" collapse-tags placeholder="请选择">
+            <el-option v-for="(itemName, itemId) in appTypes" :key="itemId" :label="itemName" :value="Math.trunc(itemId)"></el-option>
+          </el-select>
+        </el-form-item>
+        <el-form-item label="分类">
+          <el-select v-model="appForm.category" collapse-tags placeholder="请选择">
+            <el-option v-for="(itemName, itemId) in categories" :key="itemId" :label="itemName" :value="Math.trunc(itemId)"></el-option>
+          </el-select>
+        </el-form-item>
+        <el-form-item label="标签">
+          <el-select v-model="appForm.tags" value-key="tagId" multiple collapse-tags placeholder="请选择">
+            <el-option v-for="(itemName, itemId) in tags" :key="itemId" :label="itemName" :value="{ tagId: Math.trunc(itemId) }"></el-option>
+          </el-select>
+        </el-form-item>
+        <el-form-item label="是否发布" prop="status">
+          <el-switch v-model="appForm.status"></el-switch>
+        </el-form-item>
+      </el-form>
+      <div slot="footer" class="dialog-footer">
+        <el-button @click="appDialogVisible = false">取 消</el-button>
+        <el-button type="primary" @click="appDialogConfirm">确 定</el-button>
+      </div>
+    </el-dialog>
 
     <!-- 版本dialog -->
     <el-dialog title="版本信息" :visible.sync="versionDialogVisible" width="70%" class="version-dialog">
@@ -133,10 +169,10 @@
 </template>
 
 <script>
-import { GetApp } from 'src/api/app';
+import { GetApp, apiAppCU } from 'src/api/app';
 import { apiVersionCU } from 'src/api/version';
 import { ASN_API } from 'src/const';
-// import AsnUpload from 'src/components/upload';
+import AsnUpload from 'src/components/upload';
 import Clipboard from 'clipboard';
 import tableMix from 'src/utils/mixins/table';
 import { AESDecrypt } from 'src/utils/common/encrypt';
@@ -149,36 +185,29 @@ export default {
       app: {
         name: '',
         carousels: [],
+        versions: [],
       },
+      appDialogVisible: false,
       versionDialogVisible: false,
+      appForm: {},
       versionForm: {},
       disabled: false,
       uploadApi: ASN_API.uploadApi,
+      tts: [{ tagId: 1 }, { tagId: 2 }],
     };
   },
   methods: {
     goBack() {
       this.$router.back();
     },
-    parsePercentage(val) {
-      return parseInt(val, 10);
-    },
     search() {
+      if (this.isNew) {
+        this.openAppDialog();
+        return;
+      }
       GetApp(this.appId).then(resp => {
         this.app = resp;
       });
-    },
-    onSubmit() {
-      console.log('submit!');
-    },
-    uploadCarouselSuccess(response, file, fileList) {
-      fileList[fileList.length - 1].url = response.data;
-    },
-    removeCarousel() {
-      console.log(23333);
-    },
-    onError(err, file, fileList) {
-      console.log(err, file, fileList);
     },
     clipboard(id, secret) {
       let clipboard = new Clipboard(`.asn-copy-${id}`, {
@@ -198,6 +227,36 @@ export default {
         clipboard.destroy();
       });
     },
+    // app dialog
+    openAppDialog() {
+      let appFormData = _.cloneDeep(this.app);
+      if (!this.isNew) {
+        appFormData.carousels.push({ url: appFormData.icon });
+      }
+      this.appForm = appFormData;
+      this.appDialogVisible = true;
+    },
+    onUploadSuccess(file) {
+      this.appForm.carousels.push(file);
+    },
+    onUploadRemove(index) {
+      this.appForm.carousels.splice(index, 1);
+      console.log(this.appForm.carousels);
+    },
+    appDialogConfirm() {
+      apiAppCU(this.appId, this.appForm)
+        .then(resp => {
+          resp.versions = this.app.versions;
+          this.app = resp;
+          if (this.isNew) {
+            this.$router.push({ name: 'asn-app-item', params: { id: resp.id } });
+          }
+        })
+        .finally(() => {
+          this.appDialogVisible = false;
+        });
+    },
+
     // version dialog
     addVersion() {
       this.versionForm = { downloads: [] };
@@ -218,7 +277,20 @@ export default {
       this.versionForm.downloads.splice(index, 1);
     },
     versionDialogConfirm() {
-      apiVersionCU(this.appId, this.versionForm);
+      apiVersionCU(this.appId, this.versionForm)
+        .then(resp => {
+          let index = this.app.versions.findIndex(el => {
+            return el.id === resp.id;
+          });
+          if (index > -1) {
+            this.$set(this.app.versions, index, resp);
+          } else {
+            this.app.versions.unshift(resp);
+          }
+        })
+        .finally(() => {
+          this.versionDialogVisible = false;
+        });
     },
   },
   computed: {
@@ -228,9 +300,12 @@ export default {
     appId() {
       return this.$route.params.id;
     },
+    isNew() {
+      return this.$route.params.id === 'new';
+    },
   },
   components: {
-    // AsnUpload,
+    AsnUpload,
   },
 };
 </script>

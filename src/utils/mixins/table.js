@@ -1,4 +1,5 @@
 import { dateTimeFormat } from '../common/date';
+import { ASN_APP_TYPE } from 'src/const';
 
 export default {
   data() {
@@ -22,6 +23,9 @@ export default {
     },
     downloads() {
       return this.$store.getters.downloads;
+    },
+    appTypes() {
+      return ASN_APP_TYPE;
     },
   },
   created() {

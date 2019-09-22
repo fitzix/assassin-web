@@ -27,7 +27,7 @@
       </el-form-item>
     </el-form>
     <div class="asn-apps-list">
-      <el-button type="primary" icon="el-icon-circle-plus-outline" size="mini">添加应用</el-button>
+      <el-button type="primary" icon="el-icon-circle-plus-outline" size="mini" @click="goToDetail({ id: 'new' })">添加应用</el-button>
       <el-button type="danger" icon="el-icon-remove-outline" size="mini">批量删除</el-button>
       <el-table :data="tableData" style="width: 100%">
         <el-table-column type="index" width="50" />
