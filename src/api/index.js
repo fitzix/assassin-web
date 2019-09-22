@@ -15,3 +15,7 @@ export function GetCategories() {
 export function GetDownloadTypes() {
   return axios.get('/downloads');
 }
+
+export function apiLogin(data) {
+  return axios.post('/login', data);
+}

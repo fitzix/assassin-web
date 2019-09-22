@@ -1,4 +1,4 @@
-import { GetTags, GetCategories, GetDownloadTypes } from 'src/api';
+import { GetTags, GetCategories, GetDownloadTypes, apiLogin } from 'src/api';
 import { parseListToObject } from 'src/utils/common';
 
 const state = {
@@ -18,6 +18,9 @@ const mutations = {
   SET_DOWNLOADS(state, data) {
     state.downloads = data;
   },
+  SET_TOKEN(state, data) {
+    state.token = data;
+  },
 };
 
 const actions = {
@@ -34,6 +37,14 @@ const actions = {
   setDownloads({ commit }) {
     GetDownloadTypes().then(resp => {
       commit('SET_DOWNLOADS', parseListToObject(resp));
+    });
+  },
+  login({ commit }, data) {
+    return new Promise(resolve => {
+      apiLogin(data).then(resp => {
+        commit('SET_TOKEN', resp.token);
+        resolve();
+      });
     });
   },
 };

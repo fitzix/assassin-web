@@ -18,8 +18,9 @@
       </el-form-item>
       <el-form-item label="状态">
         <el-select v-model="searchQuery.status" placeholder="请选择状态">
-          <el-option label="已发布" :value="0"></el-option>
-          <el-option label="未发布" :value="1"></el-option>
+          <el-option label="全部" value="all"></el-option>
+          <el-option label="已发布" value="pub"></el-option>
+          <el-option label="未发布" value="unpub"></el-option>
         </el-select>
       </el-form-item>
       <el-form-item label=" ">
@@ -61,7 +62,7 @@
 
 <script>
 import AsnPage from 'src/components/page';
-import { GetAppList } from 'src/api/app';
+import { apiAuthGetApps } from 'src/api/app';
 import pageMix from 'src/utils/mixins/page';
 export default {
   mixins: [pageMix],
@@ -71,13 +72,13 @@ export default {
         key: '',
         type: 0,
         order: 'new',
-        status: 0,
+        status: 'all',
       },
     };
   },
   methods: {
     search() {
-      GetAppList(this.searchQuery).then(resp => {
+      apiAuthGetApps(this.searchQuery).then(resp => {
         this.total = resp.total;
         this.tableData = resp.info;
       });

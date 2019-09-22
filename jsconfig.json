@@ -6,10 +6,10 @@
         "src/*"
       ],
       "assassin/*": [
-        "src/pages/assassin"
+        "src/pages/assassin/*"
       ],
       "templar/*": [
-        "src/pages/templar"
+        "src/pages/templar/*"
       ]
     }
   },

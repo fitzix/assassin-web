@@ -5,6 +5,7 @@ import Router from 'vue-router';
 // import AppRoute from './app';
 
 const Layout = () => import('templar/views/layout');
+const Login = () => import('templar/views/login');
 const App = () => import('templar/views/app');
 const AppItem = () => import('templar/views/app/item');
 
@@ -18,8 +19,11 @@ export default new Router({
       path: '/',
       component: Layout,
       name: 'asn-home',
-      // redirect: '/',
-      // children: HomeRoute,
+    },
+    {
+      path: '/login',
+      component: Login,
+      name: 'asn-login',
     },
     {
       path: '/apps',

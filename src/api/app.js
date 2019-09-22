@@ -8,6 +8,16 @@ export function GetApp(id) {
   return axios.get(`/apps/${id}`);
 }
 
+// Authorized
+
+export function apiAuthGetApps(data = {}) {
+  return axios.get('/auth/apps', data);
+}
+
+export function apiAuthGetApp(id) {
+  return axios.get(`/auth/apps/${id}`);
+}
+
 function apiUpdateApp(appId, data) {
   return axios.put(`/apps/${appId}`, data);
 }

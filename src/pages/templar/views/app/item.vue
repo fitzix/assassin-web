@@ -38,7 +38,7 @@
             <el-tag type="danger">{{ app.hot }}</el-tag>
           </span>
           <span>
-            <i>最新版本: </i>
+            <i>版本更新时间: </i>
             <el-tag type="info">{{ app.versionAt | dateTimeFormat }}</el-tag>
           </span>
         </p>
@@ -169,7 +169,7 @@
 </template>
 
 <script>
-import { GetApp, apiAppCU } from 'src/api/app';
+import { apiAuthGetApp, apiAppCU } from 'src/api/app';
 import { apiVersionCU } from 'src/api/version';
 import { ASN_API } from 'src/const';
 import AsnUpload from 'src/components/upload';
@@ -205,7 +205,7 @@ export default {
         this.openAppDialog();
         return;
       }
-      GetApp(this.appId).then(resp => {
+      apiAuthGetApp(this.appId).then(resp => {
         this.app = resp;
       });
     },

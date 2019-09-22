@@ -5,6 +5,11 @@ export function cdnPrefix(url, type, serverType) {
   if (!url) {
     return '';
   }
+
+  let server = CDN_REPOSITORY.GithubRawServer;
+  let keys = Object.values(CDN_REPOSITORY);
+  keys = keys.slice(2, 5);
+
   switch (type) {
     case 'article':
       type = CDN_REPOSITORY.ArticlePath;
@@ -15,10 +20,9 @@ export function cdnPrefix(url, type, serverType) {
     case 'app':
       type = CDN_REPOSITORY.AppContentPath;
   }
-  let server = CDN_REPOSITORY.GithubRawServer;
-  let keys = Object.values(CDN_REPOSITORY);
-  keys = keys.slice(2, 5);
+
   keys.push(type, url);
+
   if (serverType === 'web') {
     server = CDN_REPOSITORY.GithubServer;
     keys.splice(2, 0, 'tree');
@@ -45,7 +49,7 @@ export function imgPrefix(url) {
 }
 
 export function appContentPrefix(id, serverType) {
-  return cdnPrefix(id, 'app', serverType);
+  return `${cdnPrefix(id, 'app', serverType)}.md`;
 }
 
 export function parseListToObject(dataList) {
