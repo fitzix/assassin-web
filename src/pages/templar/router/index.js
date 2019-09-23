@@ -1,8 +1,6 @@
 import Vue from 'vue';
 import Router from 'vue-router';
-
-// import HomeRoute from './home';
-// import AppRoute from './app';
+import store from '../store';
 
 const Layout = () => import('templar/views/layout');
 const Login = () => import('templar/views/login');
@@ -11,7 +9,7 @@ const AppItem = () => import('templar/views/app/item');
 
 Vue.use(Router);
 
-export default new Router({
+const router = new Router({
   mode: process.env.NODE_ENV === 'production' ? 'history' : 'hash',
   base: process.env.BASE_URL,
   routes: [
@@ -24,6 +22,9 @@ export default new Router({
       path: '/login',
       component: Login,
       name: 'asn-login',
+      meta: {
+        free: true,
+      },
     },
     {
       path: '/apps',
@@ -45,3 +46,18 @@ export default new Router({
     },
   ],
 });
+
+router.beforeEach((to, from, next) => {
+  // 不需要登录的页面
+  if (to.matched.some(record => record.meta.free)) {
+    next();
+    return;
+  }
+  if (!store.getters.token) {
+    next({ name: 'asn-login' });
+    return;
+  }
+  next();
+});
+
+export default router;

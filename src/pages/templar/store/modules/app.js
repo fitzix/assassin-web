@@ -1,11 +1,21 @@
 import { GetTags, GetCategories, GetDownloadTypes, apiLogin } from 'src/api';
 import { parseListToObject } from 'src/utils/common';
+import { ASN_STORE } from 'src/const';
+
+function getUserInfo() {
+  let userStr = localStorage.getItem(ASN_STORE.user);
+  if (!userStr) {
+    return false;
+  }
+  return JSON.parse(userStr);
+}
 
 const state = {
-  token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiJVR2hLN2QtcjM0aGVvQVJWIiwiY29kZSI6MCwiZXhwIjoxNTY5NDEyMTA3LCJpc3MiOiJhc24ueHl6In0.H1pUNRAO8UOFC1dX8eXikWrTcouJEaTEyfEGiGRDxtg',
+  token: localStorage.getItem(ASN_STORE.token),
   tags: {},
   categories: {},
   downloads: {},
+  user: getUserInfo(),
 };
 
 const mutations = {
@@ -19,7 +29,20 @@ const mutations = {
     state.downloads = data;
   },
   SET_TOKEN(state, data) {
-    state.token = data;
+    if (data) {
+      state.token = data;
+      localStorage.setItem(ASN_STORE.token, data);
+      return;
+    }
+    state.token = null;
+    localStorage.removeItem(ASN_STORE.token);
+  },
+  SET_USER(state, data) {
+    if (data.remember) {
+      localStorage.setItem(ASN_STORE.user, JSON.stringify(data));
+      return;
+    }
+    localStorage.removeItem(ASN_STORE.user);
   },
 };
 
@@ -43,9 +66,13 @@ const actions = {
     return new Promise(resolve => {
       apiLogin(data).then(resp => {
         commit('SET_TOKEN', resp.token);
+        commit('SET_USER', data);
         resolve();
       });
     });
+  },
+  logout({ commit }) {
+    commit('SET_TOKEN');
   },
 };
 
